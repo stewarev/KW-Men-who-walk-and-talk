@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Men Who Walk & Talk – Waterloo Region</title>
+  <!-- Barlow Condensed = headers | Oswald = event details | Lato = body/taglines -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Oswald:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Forest Navy — primary backgrounds & rings */
+      --navy:      #1B3050;
+      --navy-dark: #0F1E34;
+      --navy-light:#243E6B;
+      /* Heritage Red — banners, dividers, maple leaves */
+      --red:       #C0312B;
+      --red-light: #D94040;
+      /* High-Viz Yellow — event Date / Time / Location */
+      --yellow:    #F5C400;
+      --yellow-dim:#C8A000;
+      /* Vintage Cream — logo typography, secondary banners */
+      --cream:     #F2E8D4;
+      --cream-dark:#DDD0B4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--navy-dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='transparent'/%3E%3Ccircle cx='1' cy='1' r='0.4' fill='rgba(255,255,255,0.025)'/%3E%3Ccircle cx='3' cy='3' r='0.4' fill='rgba(255,255,255,0.025)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(36,62,107,0.9) 0%, transparent 70%),
+        linear-gradient(180deg, #111E38 0%, #1B2F52 50%, #111E38 100%);
+      border-bottom: 3px solid var(--red);
+      text-align: center;
+      z-index: 1;
+    }
+
+    /* pine tree silhouette row */
+    .trees {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 160px;
+      overflow: hidden;
+      opacity: 0.12;
+    }
+    .trees svg { width: 100%; height: 100%; }
+
+    /* ─── LOGO ─── */
+    .badge {
+      display: inline-block;
+      width: 320px;
+      height: 320px;
+      margin-bottom: 40px;
+    }
+    .badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.5));
+    }
+
+    /* kept for mobile scaling */
+    .maple-row { display: none; }
+    .maple-leaf { display: none; }
+    .badge-region {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--yellow);
+      text-transform: uppercase;
+    }
+
+    /* Walking figures SVG */
+    .walkers-icon {
+      width: 90px;
+      height: 50px;
+      margin: 6px 0;
+    }
+
+    .badge-title-main {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.1;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .badge-title-amp {
+      color: var(--red);
+    }
+
+    .badge-divider {
+      width: 80%;
+      height: 1px;
+      background: var(--yellow);
+      opacity: 0.5;
+      margin: 6px 0;
+    }
+
+    .badge-est {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* ─── HERO TEXT ─── */
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .hero-title .amp { color: var(--red); }
+    .hero-title .region {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(16px, 2.5vw, 24px);
+      font-weight: 700;
+      letter-spacing: 8px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    .hero-motto {
+      font-family: 'Lato', sans-serif;
+      font-style: italic;
+      font-size: clamp(17px, 2.2vw, 23px);
+      color: var(--cream);
+      opacity: 0.85;
+      margin: 28px auto;
+      max-width: 560px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .hero-motto::before,
+    .hero-motto::after {
+      content: '"';
+      color: var(--red);
+      font-size: 1.4em;
+      line-height: 0;
+      vertical-align: -0.3em;
+      font-style: normal;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 16px 44px;
+      background: var(--red);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--red);
+      transition: background 0.25s, color 0.25s;
+    }
+    .hero-cta:hover {
+      background: transparent;
+      color: var(--red);
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      position: relative;
+      z-index: 1;
+      background: var(--red);
+      padding: 56px 24px;
+    }
+    .pillars-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .pillar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 32px;
+      border-right: 1px solid rgba(242,232,212,0.25);
+    }
+    .pillar:last-child { border-right: none; }
+    .pillar-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+    .pillar h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .pillar p {
+      font-size: 14px;
+      color: rgba(242,232,212,0.85);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ─── ABOUT SECTION ─── */
+    .about {
+      position: relative;
+      z-index: 1;
+      background: var(--navy);
+      padding: 80px 24px;
+    }
+    .about-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .section-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.05;
+      margin-bottom: 28px;
+    }
+    .section-divider {
+      width: 60px;
+      height: 3px;
+      background: var(--yellow);
+      margin: 0 auto 32px;
+    }
+    .about-body {
+      font-size: 18px;
+      line-height: 1.85;
+      color: rgba(242,232,212,0.85);
+      font-weight: 300;
+    }
+    .about-body strong {
+      color: var(--cream);
+      font-weight: 700;
+    }
+
+    /* ─── WALK DETAILS ─── */
+    .walk {
+      position: relative;
+      z-index: 1;
+      background: var(--navy-dark);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(200,168,75,0.2);
+      border-bottom: 1px solid rgba(200,168,75,0.2);
+    }
+    .walk-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .walk-card {
+      background: var(--navy);
+      border: 2px solid var(--yellow);
+      border-radius: 4px;
+      padding: 52px 48px;
+      margin-top: 40px;
+      position: relative;
+    }
+    .walk-card::before {
+      content: '★ NEXT WALK ★';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy-dark);
+      padding: 0 16px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      color: var(--yellow);
+      white-space: nowrap;
+    }
+
+    .walk-details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .walk-detail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .walk-detail-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      color: rgba(242,232,212,0.5);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .walk-detail-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      color: var(--yellow);
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .walk-detail-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      color: rgba(242,232,212,0.6);
+      margin-top: 6px;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .walk-rules {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .walk-rule {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: rgba(242,232,212,0.7);
+      text-transform: uppercase;
+    }
+    .walk-rule .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .walk-cta-note {
+      font-size: 14px;
+      color: var(--cream);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .walk-cta-note strong {
+      font-weight: 700;
+      color: var(--yellow);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 18px 52px;
+      background: var(--red);
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--red);
+      transition: all 0.25s;
+      margin: 4px;
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--red);
+    }
+    .btn-secondary {
+      display: inline-block;
+      padding: 18px 52px;
+      background: transparent;
+      color: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid rgba(242,232,212,0.3);
+      transition: all 0.25s;
+      margin: 4px;
+    }
+    .btn-secondary:hover {
+      border-color: var(--cream);
+    }
+
+    /* ─── VALUES ROW ─── */
+    .values {
+      position: relative;
+      z-index: 1;
+      background: var(--navy);
+      padding: 80px 24px;
+    }
+    .values-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+      text-align: left;
+    }
+    .value-card {
+      background: var(--navy-dark);
+      border-left: 4px solid var(--yellow);
+      padding: 28px 28px;
+    }
+    .value-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .value-card p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(242,232,212,0.75);
+      font-weight: 300;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: #0C1525;
+      padding: 52px 24px;
+      text-align: center;
+      border-top: 3px solid var(--red);
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .footer-logo .amp { color: var(--red); }
+    .footer-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(242,232,212,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(242,232,212,0.3);
+      font-weight: 300;
+    }
+    .footer-maple {
+      color: var(--red);
+      font-size: 16px;
+      margin: 0 4px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      .pillars-inner {
+        grid-template-columns: 1fr;
+      }
+      .pillar { border-right: none; border-bottom: 1px solid rgba(242,232,212,0.2); }
+      .pillar:last-child { border-bottom: none; }
+      .walk-details-grid { grid-template-columns: 1fr; gap: 24px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .walk-card { padding: 40px 24px; }
+      .badge { width: 240px; height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════ HERO ══ -->
+  <section class="hero">
+
+    <!-- Pine tree silhouette -->
+    <div class="trees" aria-hidden="true">
+      <svg viewBox="0 0 1200 160" preserveAspectRatio="xMidYMax meet" fill="currentColor">
+        <!-- repeating pine trees -->
+        <polygon points="60,160 100,60 140,160" /><polygon points="80,160 100,80 120,160" />
+        <polygon points="150,160 195,55 240,160" /><polygon points="170,160 195,75 220,160" />
+        <polygon points="250,160 285,70 320,160" /><polygon points="265,160 285,88 305,160" />
+        <polygon points="330,160 375,45 420,160" /><polygon points="350,160 375,65 400,160" />
+        <polygon points="430,160 470,65 510,160" /><polygon points="446,160 470,82 494,160" />
+        <polygon points="520,160 560,52 600,160" /><polygon points="538,160 560,72 582,160" />
+        <polygon points="610,160 648,68 686,160" /><polygon points="626,160 648,86 670,160" />
+        <polygon points="695,160 738,50 781,160" /><polygon points="715,160 738,70 761,160" />
+        <polygon points="790,160 828,60 866,160" /><polygon points="806,160 828,78 850,160" />
+        <polygon points="876,160 918,44 960,160" /><polygon points="895,160 918,64 941,160" />
+        <polygon points="968,160 1006,62 1044,160" /><polygon points="984,160 1006,80 1028,160" />
+        <polygon points="1052,160 1094,55 1136,160" /><polygon points="1070,160 1094,73 1118,160" />
+        <polygon points="1140,160 1172,68 1204,160" /><polygon points="1154,160 1172,84 1190,160" />
+      </svg>
+    </div>
+
+    <!-- Logo -->
+    <div class="badge" role="img" aria-label="Men Who Walk and Talk emblem">
+      <img src="mwwt-logo.png" alt="Men Who Walk and Talk – Waterloo Region logo" />
+    </div>
+
+    <p class="hero-eyebrow">Waterloo Region · Ontario</p>
+    <h1 class="hero-title">
+      Men Who Walk <span class="amp">&</span> Talk
+      <span class="region">Waterloo Region</span>
+    </h1>
+
+    <p class="hero-motto">No pressure. Just blokes &amp; conversation.</p>
+
+    <a href="#next-walk" class="hero-cta">Join the Next Walk</a>
+  </section>
+
+  <!-- ══════════════════════════════ THREE PILLARS ══ -->
+  <section class="pillars" aria-label="Our three pillars">
+    <div class="pillars-inner">
+      <div class="pillar">
+        <div class="pillar-icon">📵</div>
+        <h3>No Cameras</h3>
+        <p>Privacy is paramount. What is said on the trail stays on the trail — free from social media filming or digital intrusion.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🧭</div>
+        <h3>No Agenda</h3>
+        <p>We are not a structured therapy group or networking event. We are simply walking. Conversation flows naturally without a curriculum.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🙌</div>
+        <h3>No Performance</h3>
+        <p>No need to impress, mask, or perform. Show up exactly as you are — whether you want to vent, listen, or walk in silence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ ABOUT ══ -->
+  <section class="about" aria-labelledby="about-heading">
+    <div class="about-inner">
+      <p class="section-tag">Why We Walk</p>
+      <h2 class="section-title" id="about-heading">A space to just step away.</h2>
+      <div class="section-divider"></div>
+      <p class="about-body">
+        In a world that constantly asks men to <strong>perform, succeed, or put on a brave face</strong>, we offer something different.
+        No expectations. No judgment. Just a walk through Waterloo Region's beautiful trails with other blokes who understand.
+        <br /><br />
+        Come to talk. Come to listen. Or just come for the <strong>fresh air</strong>.
+        There's no dress code, no fitness requirement, and no preparation needed.
+        The only rule is to show up.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ WALK ══ -->
+  <section class="walk" id="next-walk" aria-labelledby="walk-heading">
+    <div class="walk-inner">
+      <p class="section-tag">Come Walk With Us</p>
+      <h2 class="section-title" id="walk-heading">Our Next Group Walk</h2>
+      <div class="section-divider"></div>
+
+      <div class="walk-card">
+        <div class="walk-details-grid">
+          <div class="walk-detail">
+            <span class="walk-detail-label">Date</span>
+            <span class="walk-detail-value">Sunday<br />May 24th, 2026</span>
+          </div>
+          <div class="walk-detail">
+            <span class="walk-detail-label">Time</span>
+            <span class="walk-detail-value">1:00 PM</span>
+            <span class="walk-detail-sub">Arrive a few minutes early</span>
+          </div>
+          <div class="walk-detail">
+            <span class="walk-detail-label">Location</span>
+            <span class="walk-detail-value">Walter Bean<br />Trail</span>
+            <span class="walk-detail-sub">Pioneer Tower · Kitchener</span>
+          </div>
+        </div>
+
+        <div class="walk-rules">
+          <span class="walk-rule"><span class="dot"></span>No cameras</span>
+          <span class="walk-rule"><span class="dot"></span>No agenda</span>
+          <span class="walk-rule"><span class="dot"></span>No performance</span>
+        </div>
+
+        <p class="walk-cta-note">
+          All are welcome. Just show up as you are.<br />
+          <strong>DM us on Instagram to confirm your spot.</strong>
+        </p>
+
+        <div>
+          <a href="https://instagram.com/menwhowalkandtalk" class="btn-primary" target="_blank" rel="noopener">DM to Confirm</a>
+          <a href="https://maps.google.com/?q=Walter+Bean+Trail+Pioneer+Tower+Kitchener+Ontario" class="btn-secondary" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ VALUES ══ -->
+  <section class="values" aria-labelledby="values-heading">
+    <div class="values-inner">
+      <p class="section-tag">What We Stand For</p>
+      <h2 class="section-title" id="values-heading">Built on Real Connection</h2>
+      <div class="section-divider"></div>
+
+      <div class="values-grid">
+        <div class="value-card">
+          <h4>Community First</h4>
+          <p>Men Who Walk &amp; Talk was built by the community, for the community. Every walk is a chance to strengthen the ties that keep us grounded and connected to something real.</p>
+        </div>
+        <div class="value-card">
+          <h4>Mental &amp; Physical Wellbeing</h4>
+          <p>Walking is medicine. Talking is medicine. Together, they're a simple and powerful way to support your wellbeing without the weight of a formal commitment or structured program.</p>
+        </div>
+        <div class="value-card">
+          <h4>Privacy &amp; Trust</h4>
+          <p>What's said on the trail stays on the trail. We don't film. We don't post. We create a space where you can be fully honest — because trust is the foundation of everything here.</p>
+        </div>
+        <div class="value-card">
+          <h4>Proudly Local</h4>
+          <p>Rooted in Waterloo Region, Ontario — we walk the trails, paths, and green spaces of our own backyard. This is a local chapter built for local blokes, Est. 2026.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════ FOOTER ══ -->
+  <footer>
+    <div class="footer-logo">Men Who Walk <span class="amp">&</span> Talk</div>
+    <div class="footer-sub">Waterloo Region <span class="footer-maple">🍁</span> Est. 2026</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#next-walk">Next Walk</a>
+      <a href="https://instagram.com/menwhowalkandtalk" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@menwhowalkandtalk.ca">Contact</a>
+    </nav>
+    <p class="footer-copy">
+      No cameras. No agenda. No performance.<br />
+      <span class="footer-maple">🍁</span> Waterloo Region, Ontario &nbsp;·&nbsp; Men Who Walk &amp; Talk &copy; 2026
+    </p>
+  </footer>
+
+</body>
+</html>
