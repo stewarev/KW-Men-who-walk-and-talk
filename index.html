@@ -496,6 +496,138 @@
       font-weight: 300;
     }
 
+    /* ─── RESOURCES ─── */
+    .resources {
+      position: relative;
+      z-index: 1;
+      background: var(--navy-dark);
+      padding: 80px 24px;
+      border-top: 1px solid rgba(200,168,75,0.2);
+    }
+    .resources-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .resources-intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(242,232,212,0.8);
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      text-align: left;
+      margin-bottom: 48px;
+    }
+    .resource-group {
+      background: var(--navy);
+      border-top: 3px solid var(--red);
+      padding: 32px 28px;
+    }
+    .resource-group h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .resource-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(242,232,212,0.1);
+    }
+    .resource-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .resource-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .resource-role {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 6px;
+    }
+    .resource-links {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .resource-links a {
+      font-size: 13px;
+      color: rgba(242,232,212,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+    .resource-links a:hover { color: var(--yellow); }
+    .crisis-banner {
+      background: var(--red);
+      border-radius: 4px;
+      padding: 36px 40px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .crisis-banner h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .crisis-lines {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 40px;
+      margin-bottom: 20px;
+    }
+    .crisis-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .crisis-line-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(242,232,212,0.7);
+      margin-bottom: 4px;
+    }
+    .crisis-line-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 1px;
+    }
+    .crisis-note {
+      font-size: 14px;
+      color: rgba(242,232,212,0.85);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+    .crisis-note strong { font-weight: 700; color: var(--cream); }
+
     /* ─── FOOTER ─── */
     footer {
       position: relative;
@@ -561,6 +693,8 @@
       .pillar:last-child { border-bottom: none; }
       .walk-details-grid { grid-template-columns: 1fr; gap: 24px; }
       .values-grid { grid-template-columns: 1fr; }
+      .resources-grid { grid-template-columns: 1fr; }
+      .crisis-banner { padding: 28px 20px; }
       .walk-card { padding: 40px 24px; }
       .badge { width: 240px; height: 240px; }
     }
@@ -717,12 +851,164 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════ ADDITIONAL RESOURCES ══ -->
+  <section class="resources" id="resources" aria-labelledby="resources-heading">
+    <div class="resources-inner">
+      <p class="section-tag">Support &amp; Resources</p>
+      <h2 class="section-title" id="resources-heading">Additional Resources</h2>
+      <div class="section-divider"></div>
+      <p class="resources-intro">
+        Walking together is a great first step — and sometimes more support is needed.
+        Below are trusted providers and community resources for men's mental health in Waterloo Region and beyond.
+      </p>
+
+      <div class="resources-grid">
+
+        <!-- Private Therapy — Kitchener -->
+        <div class="resource-group">
+          <h3>Private Therapy · Kitchener</h3>
+
+          <div class="resource-item">
+            <div class="resource-name">Exhale Therapy</div>
+            <div class="resource-role">Men's Mental Health — Daryl, Sara Brooks &amp; Rachel Holland</div>
+            <div class="resource-links">
+              <a href="https://www.exhaletherapy.ca/" target="_blank" rel="noopener">exhaletherapy.ca</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Jacqueline Peters</div>
+            <div class="resource-role">Registered Psychotherapist · Jacqueline Peters Psychotherapy</div>
+            <div class="resource-links">
+              <a href="https://www.jacquelinepeterstherapy.ca" target="_blank" rel="noopener">jacquelinepeterstherapy.ca</a>
+              <a href="mailto:hello@jacquelinepeterstherapy.ca">hello@jacquelinepeterstherapy.ca</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Kickstart Men's Mental Health</div>
+            <div class="resource-role">Men's Therapy</div>
+            <div class="resource-links">
+              <a href="https://www.kickstartmenstherapy.ca/" target="_blank" rel="noopener">kickstartmenstherapy.ca</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Private Therapy — Waterloo & Guelph -->
+        <div class="resource-group">
+          <h3>Private Therapy · Waterloo &amp; Guelph</h3>
+
+          <div class="resource-item">
+            <div class="resource-name">Grant Martin</div>
+            <div class="resource-role">Social Worker · Liberation Counselling</div>
+            <div class="resource-links">
+              <a href="https://www.liberationcounselling.com/grant" target="_blank" rel="noopener">liberationcounselling.com/grant</a>
+              <a href="mailto:connect@liberationcounselling.com">connect@liberationcounselling.com</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Chris — Three Tides Wellness</div>
+            <div class="resource-role">Registered Psychotherapy</div>
+            <div class="resource-links">
+              <a href="https://www.threetideswellness.ca/registered-psychotherapy-with-chris" target="_blank" rel="noopener">threetideswellness.ca</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Community Agencies -->
+        <div class="resource-group">
+          <h3>Community Agencies · Waterloo Region</h3>
+
+          <div class="resource-item">
+            <div class="resource-name">Here 24/7</div>
+            <div class="resource-role">Crisis Line &amp; Referrals</div>
+            <div class="resource-links">
+              <a href="https://here247.ca/" target="_blank" rel="noopener">here247.ca</a>
+              <a href="tel:18444373247">1-844-437-3247</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Camino Wellbeing</div>
+            <div class="resource-role">Mental Health Support</div>
+            <div class="resource-links">
+              <a href="https://www.caminowellbeing.ca/" target="_blank" rel="noopener">caminowellbeing.ca</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">House of Friendship</div>
+            <div class="resource-role">Addiction Support</div>
+            <div class="resource-links">
+              <a href="https://houseoffriendship.org/how-we-help/addiction-treatment/" target="_blank" rel="noopener">houseoffriendship.org</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Helplines -->
+        <div class="resource-group">
+          <h3>Helplines</h3>
+
+          <div class="resource-item">
+            <div class="resource-name">Suicide Crisis Helpline</div>
+            <div class="resource-role">24/7 Crisis Support</div>
+            <div class="resource-links">
+              <a href="tel:988">988</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Here 24/7 Crisis Line</div>
+            <div class="resource-role">Waterloo Region</div>
+            <div class="resource-links">
+              <a href="tel:18444373247">1-844-437-3247</a>
+            </div>
+          </div>
+
+          <div class="resource-item">
+            <div class="resource-name">Gambling Helpline</div>
+            <div class="resource-role">Problem Gambling Support</div>
+            <div class="resource-links">
+              <a href="tel:18882303505">1-888-230-3505</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Crisis banner -->
+      <div class="crisis-banner" role="alert">
+        <h3>Need Immediate Support?</h3>
+        <div class="crisis-lines">
+          <div class="crisis-line">
+            <span class="crisis-line-label">Here 24/7</span>
+            <span class="crisis-line-number">1-844-437-3247</span>
+          </div>
+          <div class="crisis-line">
+            <span class="crisis-line-label">Suicide Crisis Helpline</span>
+            <span class="crisis-line-number">988</span>
+          </div>
+          <div class="crisis-line">
+            <span class="crisis-line-label">Emergency</span>
+            <span class="crisis-line-number">911</span>
+          </div>
+        </div>
+        <p class="crisis-note">
+          Experiencing a crisis or emergency? <strong>Dial 911 and ask for Mobile Crisis</strong>, or go to the nearest hospital emergency room.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ══════════════════════════════════════ FOOTER ══ -->
   <footer>
     <div class="footer-logo">Men Who Walk <span class="amp">&</span> Talk</div>
     <div class="footer-sub">Waterloo Region <span class="footer-maple">🍁</span> Est. 2026</div>
     <nav class="footer-links" aria-label="Footer navigation">
       <a href="#next-walk">Next Walk</a>
+      <a href="#resources">Resources</a>
       <a href="https://www.instagram.com/kwmenwhowalkandtalk/" target="_blank" rel="noopener">Instagram</a>
       <a href="mailto:kris@phlippens.com">Contact</a>
     </nav>
